@@ -3,12 +3,50 @@ local Lighting = game:GetService("Lighting")
 --// SKYBOX
 local skyData = {
     SkyboxBk = "rbxassetid://91741024495158",
-    SkyboxDn = "rbxassetid://116445335072575",
+    SkyboxDn = "rbxassetid://100120611073980",
     SkyboxFt = "rbxassetid://92544231851194",
     SkyboxLf = "rbxassetid://136877026685902",
-    SkyboxRt = "rbxassetid://120930233187974",
+    SkyboxRt = "rbxassetid://128112119851308",
     SkyboxUp = "rbxassetid://77175385742566"
 }
+
+--// MAP TEXTURE REPLACEMENT
+--// 7658055825 -> 80535537978765
+
+local OLD_ID = "7658055825"
+local NEW_ID = "80535537978765"
+
+local function isOldTexture(textureId)
+    if not textureId then
+        return false
+    end
+
+    return string.find(textureId, OLD_ID, 1, true) ~= nil
+end
+
+for _, object in ipairs(workspace:GetDescendants()) do
+
+    -- Textures
+    if object:IsA("Texture") then
+        if isOldTexture(object.Texture) then
+            object.Texture = "rbxassetid://" .. NEW_ID
+        end
+
+    -- Decals
+    elseif object:IsA("Decal") then
+        if isOldTexture(object.Texture) then
+            object.Texture = "rbxassetid://" .. NEW_ID
+        end
+
+    -- SurfaceAppearance
+    elseif object:IsA("SurfaceAppearance") then
+        if isOldTexture(object.ColorMap) then
+            object.ColorMap = "rbxassetid://" .. NEW_ID
+        end
+    end
+end
+
+print("Texture replacement complete: " .. OLD_ID .. " -> " .. NEW_ID)
 
 --// APPLY SKYBOX
 local function applySkybox()
@@ -41,9 +79,10 @@ Lighting.ChildAdded:Connect(function(child)
     end
 end)
 
-
-
 repeat task.wait() until game:IsLoaded()
+
+
+
 
 local Players     = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
