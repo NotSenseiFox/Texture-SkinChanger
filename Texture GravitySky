@@ -2,9 +2,9 @@ local Lighting = game:GetService("Lighting")
 
 --// SKYBOX
 local skyData = {
-    SkyboxBk = "rbxassetid://91741024495158",
-    SkyboxDn = "rbxassetid://100120611073980",
-    SkyboxFt = "rbxassetid://92544231851194",
+    SkyboxBk = "rbxassetid://104775784221929",
+    SkyboxDn = "rbxassetid://116445335072575",
+    SkyboxFt = "rbxassetid://100590606571827",
     SkyboxLf = "rbxassetid://136877026685902",
     SkyboxRt = "rbxassetid://128112119851308",
     SkyboxUp = "rbxassetid://77175385742566"
